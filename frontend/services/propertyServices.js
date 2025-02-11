@@ -1,7 +1,6 @@
 
 import api from "./api";
 
-
 export const acomodacoes = async () => {
 
     try{
@@ -32,22 +31,14 @@ export const acomodacoesPorId = async (id) => {
     }
 }
 
-
 export const acomodacoesPorCidade = async (cidade) => {
 
     try{
 
-        console.log("enviando cidade:", cidade)
-
         const response = await api.get("/acomodacoes", {
             params: {localizacao: cidade}
-        })
-
-
-        console.log("URL gerada:", response.config.url);
+        })        
         
-        
-        console.log("response", response.data)
         return response.data;
 
     } catch(error){
@@ -56,3 +47,15 @@ export const acomodacoesPorCidade = async (cidade) => {
     }
 }
 
+export const localizacoes = async () => {
+
+    try{
+        const response = await api.get("/localizacoes")
+        console.log(response.data)
+
+        return response.data
+
+    }catch(error){
+
+    }
+}

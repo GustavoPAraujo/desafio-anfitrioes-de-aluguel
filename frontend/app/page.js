@@ -6,7 +6,7 @@ export default function Home() {
   return (
 
     <>
-      <div className="h-full flex flex-row justify-evenly mt-14 pl-32">
+      <div className="h-full flex flex-row justify-evenly mt-14 p-16">
 
         <div className="w-3/5 max-w-3xl shadow-2xl p-16">
 

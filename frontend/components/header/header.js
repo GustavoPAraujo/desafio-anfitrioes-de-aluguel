@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Header() {
 
     return (
-        <header className="pl-40 border-b-2 shadow-md">
+        <header className="flex flex-row items-center justify-between pr-20 mb-10 pl-40 border-b-2 shadow-md">
             <Link href="/">
                 <Image
                     src={"/anfitrioes-img.png"}
@@ -14,6 +14,12 @@ export default function Header() {
                     className=""
                     />
             </Link>
+            <nav>
+                <Link href="/propriedades">
+                    <p className="text-blue-600 hover:text-blue-800 ">Acomodações Diesponíveis</p>
+                </Link>
+
+            </nav>
         </header>
     )
 }

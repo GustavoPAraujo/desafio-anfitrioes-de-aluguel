@@ -30,3 +30,13 @@ async def acomodacoes_id(id: str):
     for acomodacao in database["acomodacoes"]:
         if acomodacao["id"] == id:
             return acomodacao
+
+@app.get("/localizacoes")
+async def localizacoes():
+
+    cidades = set()
+
+    for acomodacao in database["acomodacoes"]:
+        cidades.add(acomodacao["localizacao"])
+
+    return list(cidades)
