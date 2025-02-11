@@ -18,19 +18,17 @@ export const acomodacoes = async () => {
     }
 }
 
-export const acomodacoesPorId = async (data) => {
+export const acomodacoesPorId = async (id) => {
 
     try{
 
-        const response = await api.get("/acomodacoes/{id}")
-        console.log(response)
+        const response = await api.get(`/acomodacoes/${id}`, id)
 
         return response.data;
 
     } catch(error){
 
         console.error("Erro  as buscar Acomodacoes", error)
-
     }
 }
 
@@ -39,8 +37,8 @@ export const acomodacoesPorCidade = async (data) => {
 
     try{
 
-        const response = await api.get("/acomodacoes/")
-        console.log(response)
+        const response = await api.get("/acomodacoes/", data)
+        console.log("response",response)
 
         return response.data;
 
