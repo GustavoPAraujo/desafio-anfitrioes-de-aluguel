@@ -1,7 +1,7 @@
 
 import api from "./api";
 
-export const acomodacoes = async () => {
+export const todasAcomodacoes = async () => {
 
     try{
 

@@ -1,40 +1,34 @@
 'use client'
 
-
-import { localizacoes } from "@/services/propertyServices";
+import { todasAcomodacoes } from "@/services/propertyServices";
+import { useState, useEffect } from 'react'
+import SearchBar from "@/components/searchBar/searchBar"
+import GridAcomodacoes from "@/components/gridAcomodacoes/gridAcomodacoes";
 
 export default function Propriedades() {
 
+    const [acomodacoes, setAcomodacoes] = useState([]);
 
-    const handleOpenLocation = async () => {
+    useEffect(() => {
+        const getAcomodacoes = async () => {
+            try {
+                const result = await todasAcomodacoes()
+                setAcomodacoes(result)
 
-        try{
+            } catch (error) {
+                console.error("Erro ao buscar acomodações:", error);
+            }
+        };
 
-            const result = await localizacoes()
-            console.log(result)
+        getAcomodacoes();
 
-        }catch(error){
-
-        }
-
-    }
+    }, []);
 
     return (
         <>
-            <div className="flex flex-col items-center">
+            <SearchBar />
+            <GridAcomodacoes acomodacoes={acomodacoes}></GridAcomodacoes>
 
-                <div className="flex flex-col items-center">
-                                    
-                        <button className=" h-[40px] w-full xs:w-[100px] sm:w-[200px] md:w-[300px] lg:w-[400px] 
-                                            border-2 rounded-[100px] hover:bg-slate-50"
-                                onClick={handleOpenLocation}>
-                            Localização
-                        </button>
-                </div>
-
-
-
-            </div>
         </>
-    )
+    );
 }
