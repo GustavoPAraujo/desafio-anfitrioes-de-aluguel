@@ -6,9 +6,10 @@ import { useState } from "react";
 
 export default function Propriedades(){
     const [id, setId] = useState("");
+    const [cidade, setCidade] = useState("");
 
 
-    const handleAcomodacoes = async () => {
+    const getAcomodacoes = async () => {
         const result = await acomodacoes()
         console.log(result)
     }
@@ -25,9 +26,14 @@ export default function Propriedades(){
     }
      
 
+    const handleCityChange = (e) =>{
+        setCidade(e.target.value)
+    }
+    const getAcomodacoesPorCidade = async () => {
 
-    const handleAcomodacoesPorCidade = async (cidade) => {
-        const result = await acomodacoesPorCidade(cidade)
+        const cidadeFiltrada = cidade.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+        const result = await acomodacoesPorCidade(cidadeFiltrada)
         console.log(result)
     }
 
@@ -37,7 +43,7 @@ export default function Propriedades(){
 
                 <div className="ml-40 mb-10">
                     <h1>todas as acomodacoes</h1>
-                    <button onClick={handleAcomodacoes}>aqui</button>
+                    <button onClick={getAcomodacoes}>aqui</button>
 
                 </div>
 
@@ -49,7 +55,16 @@ export default function Propriedades(){
                         onChange={handleIdChange}
                         />
                     <button onClick={getAcomodacoesPorId} >aqui</button>
+                </div>
 
+                <div className="ml-40 mb-10">
+                    <h1>todas as acomodacoes por cidade</h1>
+                    <input 
+                        className="border-2 mr-2" 
+                        type="text"
+                        onChange={handleCityChange}
+                        />
+                    <button onClick={getAcomodacoesPorCidade} >aqui</button>
                 </div>
 
 

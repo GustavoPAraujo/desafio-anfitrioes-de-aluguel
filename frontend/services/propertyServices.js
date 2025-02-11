@@ -33,19 +33,26 @@ export const acomodacoesPorId = async (id) => {
 }
 
 
-export const acomodacoesPorCidade = async (data) => {
+export const acomodacoesPorCidade = async (cidade) => {
 
     try{
 
-        const response = await api.get("/acomodacoes/", data)
-        console.log("response",response)
+        console.log("enviando cidade:", cidade)
 
+        const response = await api.get("/acomodacoes", {
+            params: {localizacao: cidade}
+        })
+
+
+        console.log("URL gerada:", response.config.url);
+        
+        
+        console.log("response", response.data)
         return response.data;
 
     } catch(error){
 
-        console.error("Erro  as buscar Acomodacoes", error)
-
+        console.error("Erro ao buscar Acomodacoes em", cidade)
     }
 }
 

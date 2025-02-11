@@ -14,7 +14,14 @@ app.add_middleware(
 )
 
 @app.get("/acomodacoes")
-async def acomodacoes():
+async def acomodacoes(localizacao: str | None = None):
+    if localizacao:
+        cidade = []
+        for acomodacao in database["acomodacoes"]:
+            if acomodacao["localizacao"].lower() == localizacao.lower():
+                cidade.append(acomodacao)
+        return cidade       
+
     return database.get("acomodacoes", [])
 
 @app.get("/acomodacoes/{id}")
@@ -23,17 +30,3 @@ async def acomodacoes_id(id: str):
     for acomodacao in database["acomodacoes"]:
         if acomodacao["id"] == id:
             return acomodacao
-
-@app.get("/acomodacoes/")
-async def acomodacoes_cidade(localizacao: str ):
-
-    cidade = []
-    
-    for acomodacao in database["acomodacoes"]:
-        if acomodacao["localizacao"] == localizacao:
-            cidade.append(acomodacao)
-
-    if localizacao:
-        return cidade
-
-    return "sem acomodacaoes nessa cidade"
