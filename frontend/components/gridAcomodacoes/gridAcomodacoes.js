@@ -1,38 +1,35 @@
 import Image from "next/image"
-import { useState, useEffect } from "react";
 
-export default function GridAcomodacoes({ acomodacoes }) {
-    const [favoritos, setFavoritos] = useState([]);
-
-    useEffect(() => {
-        const favoritosSalvos = JSON.parse(localStorage.getItem("favoritos")) || [];
-        setFavoritos(favoritosSalvos);
-    }, []);
+export default function GridAcomodacoes({ acomodacoes, favoritos, atualizarFavoritos }) {
 
     const handleFavoritar = (acomodacao) => {
-        let novosFavoritos = [...favoritos];
-        const index = novosFavoritos.findIndex(fav => fav.id === acomodacao.id);
-
-        if (index === -1) {
-            // Adiciona se ainda não estiver favoritado
-            novosFavoritos.push(acomodacao);
+        const favoritosSalvos = favoritos;
+    
+        const isFavorito = favoritosSalvos.some(fav => fav.id === acomodacao.id);
+        
+        let novosFavoritos;
+        if (isFavorito) {
+            novosFavoritos = favoritosSalvos.filter(fav => fav.id !== acomodacao.id);
         } else {
-            // Remove se já estiver favoritado
-            novosFavoritos.splice(index, 1);
+            novosFavoritos = [...favoritosSalvos, acomodacao];
         }
-
-        setFavoritos(novosFavoritos);
+    
         localStorage.setItem("favoritos", JSON.stringify(novosFavoritos));
+    
+
+        atualizarFavoritos(novosFavoritos);
     };
+    
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
             {acomodacoes.length > 0 ? (
-                acomodacoes.map((acomodacao) => { // <- Início do map()
+                acomodacoes.map((acomodacao) => {
                     const isFavorito = favoritos.some(fav => fav.id === acomodacao.id);
     
-                    return ( // <- Este return retorna JSX para cada acomodação
-                        <div key={acomodacao.id} className="border p-4 rounded-lg shadow-lg">
+                    return (
+
+                        <div key={acomodacao.id} className="border p-4 rounded-lg shadow-lg hover:scale-105 transition delay-75">
                             {acomodacao.imagem && (
                                 <div className="relative w-full h-48">
                                     <Image
