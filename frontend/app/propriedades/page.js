@@ -13,13 +13,19 @@ export default function Propriedades() {
     const [modalOpen, setModalOpen] = useState(false);
     const [favoritos, setFavoritos] = useState([]);
 
-    
-    
+
     useEffect(() => {
         const getAcomodacoes = async () => {
             try {
-                const result = await todasAcomodacoes()
-                setAcomodacoes(result)
+                const result = await todasAcomodacoes();
+    
+                setAcomodacoes(result.map(acomodacao => ({
+                    id: acomodacao[0],
+                    nome: acomodacao[1],
+                    imagem: acomodacao[2],
+                    preco_noite: acomodacao[3],
+                    localizacao: acomodacao[4]
+                })));
 
             } catch (error) {
                 console.error("Erro ao buscar acomodações:", error);
@@ -33,6 +39,7 @@ export default function Propriedades() {
         const getCidades = async () => {
             try {
                 const result = await localizacoes()
+
                 setCidades(result)
 
             } catch (error) {
@@ -55,8 +62,6 @@ export default function Propriedades() {
         };
     }, []);
 
-
-
     const handleOpenModal = () => {
         setModalOpen(true)
     }
@@ -71,7 +76,13 @@ export default function Propriedades() {
 
         try {
             const result = await acomodacoesPorCidade(cidade)
-            setAcomodacoes(result)
+            setAcomodacoes(result.map(acomodacao => ({
+                id: acomodacao[0],
+                nome: acomodacao[1],
+                imagem: acomodacao[2],
+                preco_noite: acomodacao[3],
+                localizacao: acomodacao[4]
+            })))
 
         } catch (error) {
             console.error("Erro ao buscar acomodações em: ", cidade, error);
