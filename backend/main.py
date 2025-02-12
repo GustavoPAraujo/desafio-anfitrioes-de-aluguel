@@ -1,11 +1,10 @@
 
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from backend.utils.json_db import database
 
 import sqlite3
 from sqlalchemy.orm import Session
-from backend.utils.database import SessionLocal, Acomodacao
+from backend.database.database import SessionLocal, Acomodacao
 
 
 app = FastAPI(root_path="/api")
