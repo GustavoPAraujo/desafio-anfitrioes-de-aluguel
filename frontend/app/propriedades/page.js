@@ -4,10 +4,9 @@ import { todasAcomodacoes, localizacoes, acomodacoesPorCidade } from "@/services
 import { useState, useEffect } from 'react'
 import SearchBar from "@/components/searchBar/searchBar"
 import GridAcomodacoes from "@/components/gridAcomodacoes/gridAcomodacoes";
-import ModalLocalizacao from "@/components/searchBar/modalFiltros"
+import ModalLocalizacao from "@/components/modalLocalizacao/modalFiltros"
 
 export default function Propriedades() {
-
     const [acomodacoes, setAcomodacoes] = useState([]);
     const [cidades, setCidades] = useState([]);
     const [cidadeSelecionada, setCidadeSelecionada] = useState(null);
