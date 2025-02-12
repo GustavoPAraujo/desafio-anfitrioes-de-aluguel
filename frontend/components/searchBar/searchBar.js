@@ -7,7 +7,7 @@ export default function SearchBar({openModal}) {
         <>
             <div className="flex flex-col items-center">
                 <button 
-                    className="h-[40px] w-full xs:w-[100px] sm:w-[200px] md:w-[300px] lg:w-[400px] 
+                    className="h-[40px] min-w-[150px] xs:w-[300px] sm:w-[400px] md:w-[500px]
                                border-2 rounded-[100px] hover:bg-slate-50"
                     onClick={openModal}
                 >

@@ -4,7 +4,9 @@ import Link from "next/link";
 export default function Header() {
 
     return (
-        <header className="flex flex-row items-center justify-between pr-20 mb-10 pl-40 border-b-2 shadow-md">
+        <header className="flex flex-row items-center justify-center 
+                            p-0 mb-10 border-b-2 shadow-md
+                            sm:pr-20 sm:pl-40 sm:justify-between ">
             <Link href="/">
                 <Image
                     src={"/anfitrioes-img.png"}
@@ -13,9 +15,9 @@ export default function Header() {
                     height={100}
                     />
             </Link>
-            <nav>
+            <nav className="hidden sm:block">
                 <Link href="/propriedades">
-                    <p className="text-blue-600 hover:text-blue-800 ">Acomodações Diesponíveis</p>
+                    <p className="text-blue-600 hover:text-blue-800 sm: ">Acomodações Diesponíveis</p>
                 </Link>
 
             </nav>

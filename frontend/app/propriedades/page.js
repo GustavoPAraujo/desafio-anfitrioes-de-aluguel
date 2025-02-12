@@ -4,7 +4,7 @@ import { todasAcomodacoes, localizacoes, acomodacoesPorCidade } from "@/services
 import { useState, useEffect } from 'react'
 import SearchBar from "@/components/searchBar/searchBar"
 import GridAcomodacoes from "@/components/gridAcomodacoes/gridAcomodacoes";
-import ModalLocalizacao from "@/components/searchBar/modallocalizacao"
+import ModalLocalizacao from "@/components/searchBar/modalFiltros"
 
 export default function Propriedades() {
 
@@ -75,6 +75,13 @@ export default function Propriedades() {
                 cidades={cidades}
                 onSelectCidade={handleSelectCidade}
             />
+
+            {cidadeSelecionada !== null ? 
+                <h2 className="ml-6">
+                    Acomodações disponíveis em:
+                    <span className="text-blue-600 font-semibold ml-2">{cidadeSelecionada}</span>
+                </h2> 
+            : false }
             
             <GridAcomodacoes acomodacoes={acomodacoes}></GridAcomodacoes>
 
