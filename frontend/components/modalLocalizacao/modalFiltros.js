@@ -5,7 +5,11 @@ export default function ModalLocalizacao({ isOpen, onClose, cidades, onSelectCid
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-40 flex justify-center items-center z-50">
+        <div 
+            onClick={onClose}
+            className="fixed inset-0 bg-gray-600 bg-opacity-40 flex justify-center items-center z-50"
+        >
+
             <div className="bg-white p-4 rounded-lg xs:w-80 sm:w-96">
                 <h3 className="text-lg font-bold mb-4">Selecione uma Localização</h3>
                 <ul>
