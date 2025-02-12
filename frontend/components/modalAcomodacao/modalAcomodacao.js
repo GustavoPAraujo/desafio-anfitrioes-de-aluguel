@@ -30,7 +30,10 @@ export default function ModalAcomodacao({ isOpen, onClose, acomodacao, favoritos
             className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
         >
 
-            <div className="bg-white p-6 pt-2 rounded-lg shadow-lg max-w-lg w-full">
+            <div
+                onClick={(e) => e.stopPropagation()}
+                className="bg-white p-6 pt-2 rounded-lg shadow-lg max-w-lg w-full"
+            >
 
                 <button onClick={onClose} className="text-sm mb-2 text-red-500">✖ Sair da Acomodação</button>
 
