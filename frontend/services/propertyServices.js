@@ -6,8 +6,7 @@ export const todasAcomodacoes = async () => {
     try{
 
         const response = await api.get("/acomodacoes")
-        console.log(response)
-
+        
         return response.data;
 
     } catch(error){
@@ -51,7 +50,6 @@ export const localizacoes = async () => {
 
     try{
         const response = await api.get("/localizacoes")
-        console.log(response.data)
 
         return response.data
 
