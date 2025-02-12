@@ -20,7 +20,9 @@ async def acomodacoes(localizacao: str | None = None):
         for acomodacao in database["acomodacoes"]:
             if acomodacao["localizacao"].lower() == localizacao.lower():
                 cidade.append(acomodacao)
-        return cidade       
+                
+        if cidade:
+            return cidade
 
     return database.get("acomodacoes", [])
 
