@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 import sqlite3
 from sqlalchemy.orm import Session
-from backend.database.database import SessionLocal, Acomodacao
+from database.database import SessionLocal, Acomodacao
 
 
 app = FastAPI(root_path="/api")
@@ -24,7 +24,7 @@ def get_db():
         db.close()
 
 @app.get("/acomodacoes")
-async def acomodacoes(localizacao: str | None = None):
+async def acomodacoes(localizacao: str | None = None ):
 
     conn = sqlite3.connect('teste.db')
     cursor = conn.cursor()
