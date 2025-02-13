@@ -12,8 +12,8 @@ acomodacoes = [
 
 db = SessionLocal()
 
-db.add_all(acomodacoes)
 db.query(Acomodacao).delete() 
+db.add_all(acomodacoes)
 db.commit()
 
 db.close()
